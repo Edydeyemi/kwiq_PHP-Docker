@@ -1,8 +1,8 @@
-FROM php:8.3.0-apache
+FROM php:7.4-apache
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-RUN install-php-extensions gd xdebug bcmath csv intl pdo_mysql pdo_pgsql mysqli uuid imagick json zip curl xml openssl mbstring tokenizer opcache
+RUN install-php-extensions gd xdebug bcmath csv intl pdo_mysql pdo_pgsql mysqli uuid imagick json zip curl xml openssl mbstring tokenizer
 
 # RUN a2enmod ssl && a2enmod socache_shmcb
 RUN a2enmod rewrite && a2enmod ssl && a2enmod socache_shmcb
@@ -27,4 +27,3 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt install zip unzip nano -y
 RUN apt install iputils-ping -y
 RUN apt install mariadb-client -y
-RUN docker-php-ext-enable imagick
